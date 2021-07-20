@@ -10,12 +10,17 @@ router.get("/", (req, res) => {
 
 router.post("/", async (req, res) => {
   const { error } = validate(req.body);
-  if (error) return res.status(400).send({ message: error.details[0].message });
+  if (error)
+    return res
+      .status(400)
+      .send({ success: false, message: error.details[0].message });
 
   const { email, firstName, lastName, password } = req.body;
 
   if (users.find((user) => user.email === email)) {
-    return res.status(400).send({ message: "User already registered." });
+    return res
+      .status(400)
+      .send({ success: false, message: "User already registered." });
   }
 
   const salt = await bcrypt.genSalt(10);
@@ -28,7 +33,9 @@ router.post("/", async (req, res) => {
     password: hashedPassword,
   });
 
-  return res.status(200).send({ message: "User successfully registered." });
+  return res
+    .status(200)
+    .send({ success: true, message: "User successfully registered." });
 });
 
 function validate(req) {
