@@ -5,6 +5,7 @@ services:
     ports:
       - "5000:3000"
   arangodb:
+    platform: linux/x86_64
     image: arangodb:latest
     environment:
       ARANGO_ROOT_PASSWORD: rootpassword

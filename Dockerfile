@@ -1,6 +1,6 @@
 # Test web app that returns the name of the host/pod/container servicing req
 # Linux x64
-FROM node:current-alpine
+FROM node:latest
 
 LABEL org.opencontainers.image.title="Example Auth" \
       org.opencontainers.image.description="Example Auth API" \
